@@ -22,16 +22,16 @@ export const InviteeBanner: React.FC<InviteeBannerProps> = ({ inviteeName, event
         >
 
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display text-stone-800 tracking-tight mb-4 drop-shadow-sm">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display text-brand-ink tracking-tight mb-4 drop-shadow-sm">
             {inviteeName}
           </h2>
 
           <div className="flex items-center gap-4 justify-center max-w-xl mx-auto">
-            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-brand-plum/40" />
-            <p className="text-stone-600 font-sans text-lg sm:text-xl font-medium tracking-wide">
-              We warmly invite you to share the joy of our wedding celebration.
+            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-brand-gold/40" />
+            <p className="text-brand-ink/75 font-sans text-lg sm:text-xl font-medium tracking-wide">
+              We warmly invite you to share the joy of our {eventLabel.toLowerCase()} celebration.
             </p>
-            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-brand-plum/40" />
+            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-brand-gold/40" />
           </div>
 
           <Heart className="w-5 h-5 text-brand-plum mt-6 fill-brand-lavender/20 animate-pulse" />

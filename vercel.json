@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/homecoming",
+      "destination": "/homecoming.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

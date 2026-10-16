@@ -29,7 +29,7 @@ export const Timeline: React.FC<TimelineProps> = ({ event = 'both' }) => {
         <span className="text-brand-plum uppercase tracking-[0.4em] text-[10px] font-medium mb-4 block">
           {event === 'homecoming' ? "The Evening's Flow" : "The Day's Flow"}
         </span>
-        <h2 className="text-5xl font-display text-stone-800 tracking-tight">
+        <h2 className="text-5xl font-display text-brand-ink tracking-tight">
           {event === 'homecoming' ? "Homecoming Timeline" : "Wedding Timeline"}
         </h2>
         <div className="w-12 h-px bg-brand-lavender/30 mx-auto mt-6" />
@@ -63,8 +63,8 @@ export const Timeline: React.FC<TimelineProps> = ({ event = 'both' }) => {
 
               {/* Content */}
               <div className={`flex-1 text-center ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                <h4 className="text-xl font-display text-stone-800 mb-1">{item.title}</h4>
-                <p className="text-stone-400 text-sm leading-relaxed">{item.desc}</p>
+                <h4 className="text-xl font-display text-brand-ink mb-1">{item.title}</h4>
+                <p className="text-brand-ink/45 text-sm leading-relaxed">{item.desc}</p>
               </div>
             </motion.div>
           ))}

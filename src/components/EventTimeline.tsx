@@ -3,9 +3,9 @@ import { Heart, MapPin, Utensils, Sparkles, Clock } from 'lucide-react';
 
 const events = [
   {
-    time: '9.30 AM',
+    time: '9.00 AM',
     title: 'Poruwa Ceremony',
-    description: 'The Poruwa Ceremony commences at 9.30 am at Hotel Kashyapa, Avissawella.',
+    description: 'The Poruwa Ceremony commences at 9.00 am at Ahaspokuna Holiday Resort, Barandana.',
     icon: Heart,
     color: 'from-rose-400 to-rose-500'
   },
@@ -14,14 +14,14 @@ const events = [
     title: 'Registration',
     description: 'Signing of the marriage registration, followed by the wedding celebration.',
     icon: Sparkles,
-    color: 'from-blue-500 to-blue-600'
+    color: 'from-brand-lavender to-brand-plum'
   },
   {
     time: '4.15 PM',
     title: 'Going Away',
     description: 'We bid farewell as the newlyweds leave to begin their journey together.',
     icon: MapPin,
-    color: 'from-amber-400 to-amber-500'
+    color: 'from-brand-gold to-brand-lavender'
   },
 ];
 
@@ -51,7 +51,7 @@ export function EventTimeline() {
                 <motion.div
                   whileInView={{ scale: [0, 1.2, 1] }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="w-6 h-6 rounded-full bg-white border-4 border-[var(--color-brand-plum)] shadow-[0_0_15px_rgba(98,114,84,0.4)] flex items-center justify-center"
+                  className="w-6 h-6 rounded-full bg-white border-4 border-[var(--color-brand-plum)] shadow-[0_0_15px_rgba(194,87,122,0.4)] flex items-center justify-center"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-plum)] group-hover:scale-150 transition-transform" />
                 </motion.div>
@@ -72,7 +72,7 @@ export function EventTimeline() {
               <div className="w-full md:w-1/2 pl-10 md:pl-0">
                 <motion.div
                   whileHover={{ y: -5, scale: 1.02 }}
-                  className="relative p-8 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.05)] overflow-hidden group-hover:shadow-[0_25px_50px_rgba(24,61,114,0.08)] transition-all duration-500"
+                  className="relative p-8 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.05)] overflow-hidden group-hover:shadow-[0_25px_50px_rgba(194,87,122,0.08)] transition-all duration-500"
                 >
                   {/* Decorative corner accent */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[var(--color-brand-plum)]/10 to-transparent rounded-bl-[100px] pointer-events-none transition-transform group-hover:scale-110" />
@@ -93,7 +93,7 @@ export function EventTimeline() {
                         {event.title}
                       </h3>
 
-                      <p className="text-gray-600 leading-relaxed font-serif text-lg italic opacity-90">
+                      <p className="text-brand-ink/70 leading-relaxed font-serif text-lg italic opacity-90">
                         {event.description}
                       </p>
                     </div>

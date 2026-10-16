@@ -6,7 +6,7 @@ import { VideoIntro } from './components/VideoIntro';
 import { InvitationContent } from './components/InvitationContent';
 import { Admin } from './components/Admin';
 import { INVITATION_IMAGE_URLS, preloadImages } from './utils/preloadImages';
-import { GALLERY_IMAGE_URLS } from './components/Gallery';
+import { getEventFromLocation } from './eventDetails';
 
 const isAdminRoute = () => window.location.pathname === '/admin';
 
@@ -19,15 +19,15 @@ export default function App() {
   const params = new URLSearchParams(window.location.search);
   const titleParam = params.get('title') || '';
   const nameParam = params.get('name') || '';
-  const eventParam = params.get('event') || 'both';
+  const event = getEventFromLocation(window.location);
+  const eventParam = event.type;
 
   const fullInviteeName = titleParam.toLowerCase() === 'family'
     ? `${nameParam} and Family`.trim()
     : `${titleParam} ${nameParam}`.trim();
 
-  let eventLabel = 'Our Wedding Celebration';
-
-  const weddingDate = new Date('2026-12-16T09:00:00');
+  const eventLabel = event.label;
+  const weddingDate = event.date;
 
   useEffect(() => {
     if (isAdminRoute()) return;
@@ -37,8 +37,6 @@ export default function App() {
     preloadImages([...INVITATION_IMAGE_URLS]).then(() => {
       if (!cancelled) setAssetsReady(true);
     });
-    // Warm the gallery photos in the background without delaying the intro
-    preloadImages(GALLERY_IMAGE_URLS);
 
     return () => {
       cancelled = true;

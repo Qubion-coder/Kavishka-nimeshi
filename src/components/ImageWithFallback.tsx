@@ -4,7 +4,7 @@ export function ImageWithFallback({ src, alt, className }: { src: string; alt: s
   const [error, setError] = useState(false);
 
   return (
-    <div className={`relative ${className} bg-gray-100 overflow-hidden`}>
+    <div className={`relative ${className} bg-brand-rose overflow-hidden`}>
       <img
         src={error ? '/placeholder-landscape.jpg' : src}
         alt={alt}

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { COUPLE, getEvent } from "../eventDetails";
 
 interface VideoIntroProps {
   key?: React.Key;
@@ -79,16 +80,16 @@ export function VideoIntro({
         }
 
         .view-invitation-btn {
-          background: #f0b9c3;
-          color: #4a3a4d;
-          border: none;
+          background: linear-gradient(135deg, #fff 0%, #FBE3EA 100%);
+          color: #A8456A;
+          border: 1px solid rgba(184, 147, 90, 0.6);
           padding: 15px 40px;
           font-size: 18px;
           font-family: "Cormorant Garamond", serif;
           border-radius: 30px;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 10px 20px rgba(240, 185, 195, 0.4);
+          box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25), 0 12px 30px rgba(194, 87, 122, 0.35);
           text-transform: uppercase;
           letter-spacing: 2px;
           margin-top: auto;
@@ -98,8 +99,8 @@ export function VideoIntro({
 
         .view-invitation-btn:hover {
           transform: translateY(-2px);
-          background: #f8dbdf;
-          box-shadow: 0 12px 25px rgba(240, 185, 195, 0.6);
+          background: linear-gradient(135deg, #fff 0%, #F6CCD9 100%);
+          box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.3), 0 16px 36px rgba(194, 87, 122, 0.45);
         }
         
         .view-invitation-btn:active {
@@ -121,8 +122,8 @@ export function VideoIntro({
             <div className="intro-overlay" />
             <div className="intro-content">
               <div className="mt-12 mb-auto text-white drop-shadow-md">
-                <p className="uppercase tracking-[0.4em] text-xs sm:text-sm font-bold mb-2 opacity-90">Wedding Invitation</p>
-                <h1 className="font-names text-5xl sm:text-6xl lg:text-7xl drop-shadow-lg tracking-wide">Chamitha & Sameera</h1>
+                <p className="uppercase tracking-[0.4em] text-xs sm:text-sm font-bold mb-2 opacity-90">{getEvent(event).invitationTitle}</p>
+                <h1 className="font-names text-5xl sm:text-6xl lg:text-7xl drop-shadow-lg tracking-wide">{COUPLE.names}</h1>
               </div>
               <button className="view-invitation-btn" onClick={handleEnter}>
                 View Invitation

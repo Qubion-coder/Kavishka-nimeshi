@@ -49,11 +49,11 @@ export const Gallery: React.FC = () => {
           transition={{ duration: 1 }}
         >
           <div className="inline-flex items-center gap-4 mb-4 sm:mb-6 justify-center">
-            <div className="w-12 sm:w-24 h-[1px] bg-gradient-to-r from-transparent to-brand-plum/60" />
+            <div className="w-12 sm:w-24 h-[1px] bg-gradient-to-r from-transparent to-brand-gold/60" />
             <span className="text-brand-plum uppercase tracking-[0.5em] sm:tracking-[0.6em] text-[10px] sm:text-[11px] font-bold font-sans drop-shadow-sm">A Lifetime OF</span>
-            <div className="w-12 sm:w-24 h-[1px] bg-gradient-to-l from-transparent to-brand-plum/60" />
+            <div className="w-12 sm:w-24 h-[1px] bg-gradient-to-l from-transparent to-brand-gold/60" />
           </div>
-          <h2 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-display text-stone-800 tracking-tight drop-shadow-sm leading-tight">
+          <h2 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-display text-brand-ink tracking-tight drop-shadow-sm leading-tight">
             Our <span className="italic font-light text-brand-plum">Gallery</span>
           </h2>
         </motion.div>
@@ -66,7 +66,7 @@ export const Gallery: React.FC = () => {
             // Spacing lives on each item (not gap/padding) so -50% lands exactly on the duplicate set
             <div key={`${image.id}-${index}`} className="flex-none pr-6 sm:pr-10">
               <div
-                className="relative w-[75vw] sm:w-[45vw] lg:w-[28vw] aspect-[3/4] sm:aspect-[4/5] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.1)] group cursor-pointer border-[8px] sm:border-[10px] border-white/90 bg-brand-rose transform transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_40px_60px_rgba(176,137,104,0.2)]"
+                className="relative w-[75vw] sm:w-[45vw] lg:w-[28vw] aspect-[3/4] sm:aspect-[4/5] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.1)] group cursor-pointer border-[8px] sm:border-[10px] border-white/90 bg-brand-rose transform transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_40px_60px_rgba(194,87,122,0.2)]"
                 onClick={() => setSelectedImage(image.url)}
               >
                 <img

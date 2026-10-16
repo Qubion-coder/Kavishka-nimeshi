@@ -17,8 +17,5 @@ export function preloadImages(urls: string[]): Promise<void> {
 }
 
 export const INVITATION_IMAGE_URLS = [
-  '/IMG_6940.JPG.jpeg',
-  '/IMG_6941.JPG.jpeg',
-  '/IMG_6942.JPG.jpeg',
-  '/IMG_6945.JPG.jpeg',
+  '/ChatGPT Image Jul 5, 2026, 02_20_06 AM.png',
 ] as const;

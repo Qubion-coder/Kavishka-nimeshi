@@ -63,7 +63,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="glass p-10 sm:p-14 lg:p-16 rounded-[3rem] border border-white/40 shadow-[0_30px_60px_rgba(176,137,104,0.1)] relative overflow-hidden bg-white/60 backdrop-blur-3xl lg:flex items-center gap-16"
+        className="glass gold-frame p-10 sm:p-14 lg:p-16 rounded-[3rem] relative overflow-hidden bg-white/60 backdrop-blur-3xl lg:flex items-center gap-16"
       >
         {/* Soft top border line */}
         <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-rose via-brand-plum/80 to-brand-rose" />
@@ -76,17 +76,17 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
             <span className="text-brand-plum uppercase tracking-[0.5em] text-[10px] sm:text-[11px] font-bold drop-shadow-sm">
               Kindly Respond
             </span>
-            <div className="hidden lg:block w-16 h-[1px] bg-gradient-to-r from-brand-plum/60 to-transparent" />
+            <div className="hidden lg:block w-16 h-[1px] bg-gradient-to-r from-brand-gold/60 to-transparent" />
           </div>
 
-          <h2 className="text-5xl sm:text-6xl font-display text-stone-800 tracking-tight leading-[1.1] mb-6 drop-shadow-sm">
+          <h2 className="text-5xl sm:text-6xl font-display text-brand-ink tracking-tight leading-[1.1] mb-6 drop-shadow-sm">
             Reserve <span className="italic font-light text-brand-plum">Your</span> Seat
           </h2>
 
-          <p className="text-stone-500/90 font-sinhala text-lg leading-relaxed mb-6">
+          <p className="text-brand-ink/65 font-serif text-lg leading-relaxed mb-6">
             {inviteeName
-              ? `${inviteeName}, ඔබගේ පැමිණීම අපට මහත් සතුටකි. කරුණාකර ඔබගේ පැමිණීම පහතින් තහවුරු කරන්න.`
-              : `ඔබගේ පැමිණීම අපට මහත් සතුටකි. කරුණාකර ඔබගේ පැමිණීම පහතින් තහවුරු කරන්න.`
+              ? `${inviteeName}, your presence would bring us great joy. Kindly confirm your attendance below.`
+              : `Your presence would bring us great joy. Kindly confirm your attendance below.`
             }
           </p>
 
@@ -104,11 +104,11 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
                 exit={{ opacity: 0, scale: 0.95 }}
                 className="text-center py-16 px-8 bg-white/70 rounded-[2rem] border border-white shadow-xl"
               >
-                <div className="w-24 h-24 bg-green-50/80 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border border-green-100">
-                  <CheckCircle className="w-12 h-12 text-green-500" />
+                <div className="w-24 h-24 bg-brand-rose/70 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border border-brand-gold/30">
+                  <CheckCircle className="w-12 h-12 text-brand-plum" />
                 </div>
-                <h3 className="text-4xl font-display text-stone-800 mb-4 tracking-tight drop-shadow-sm">With Gratitude</h3>
-                <p className="text-stone-500/90 leading-relaxed font-serif text-lg mb-8">
+                <h3 className="text-4xl font-display text-brand-ink mb-4 tracking-tight drop-shadow-sm">With Gratitude</h3>
+                <p className="text-brand-ink/65 leading-relaxed font-serif text-lg mb-8">
                   Your response has been warmly received. We cannot wait to celebrate with you!
                 </p>
                 <button
@@ -128,22 +128,22 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
                 className="space-y-6 bg-white/40 p-8 sm:p-10 rounded-[2.5rem] border border-white shadow-[0_15px_30px_rgba(0,0,0,0.05)]"
               >
                 <div>
-                  <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-stone-500 mb-3 ml-2">Full Name</label>
+                  <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/65 mb-3 ml-2">Full Name</label>
                   <input
                     required
                     type="text"
                     placeholder="E.g., John & Jane Doe"
-                    className="w-full bg-white/80 px-6 py-4 rounded-full border border-stone-200/60 focus:ring-2 focus:ring-brand-lavender/30 focus:border-brand-plum/40 outline-none transition-all duration-300 font-serif italic text-lg shadow-inner placeholder:text-stone-300"
+                    className="w-full bg-white/80 px-6 py-4 rounded-full border border-brand-rose/60 focus:ring-2 focus:ring-brand-lavender/30 focus:border-brand-plum/40 outline-none transition-all duration-300 font-serif italic text-lg shadow-inner placeholder:text-brand-ink/30"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-stone-500 mb-3 ml-2">Number of Guests</label>
+                  <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/65 mb-3 ml-2">Number of Guests</label>
                   <div className="relative group">
                     <select
-                      className="w-full bg-white/80 px-6 py-4 rounded-full border border-stone-200/60 focus:ring-2 focus:ring-brand-lavender/30 focus:border-brand-plum/40 outline-none transition-all duration-300 appearance-none font-serif italic text-lg shadow-inner text-stone-700 cursor-pointer"
+                      className="w-full bg-white/80 px-6 py-4 rounded-full border border-brand-rose/60 focus:ring-2 focus:ring-brand-lavender/30 focus:border-brand-plum/40 outline-none transition-all duration-300 appearance-none font-serif italic text-lg shadow-inner text-brand-ink/90 cursor-pointer"
                       value={formData.guests}
                       onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
                     >
@@ -159,10 +159,10 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-stone-500 mb-3 ml-2">Dietary Notes (Optional)</label>
+                  <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/65 mb-3 ml-2">Dietary Notes (Optional)</label>
                   <textarea
                     placeholder="We'd love to know if you have any allergies..."
-                    className="w-full bg-white/80 px-6 py-4 rounded-[2rem] border border-stone-200/60 focus:ring-2 focus:ring-brand-lavender/30 focus:border-brand-plum/40 outline-none transition-all duration-300 h-28 resize-none font-serif italic text-lg shadow-inner placeholder:text-stone-300"
+                    className="w-full bg-white/80 px-6 py-4 rounded-[2rem] border border-brand-rose/60 focus:ring-2 focus:ring-brand-lavender/30 focus:border-brand-plum/40 outline-none transition-all duration-300 h-28 resize-none font-serif italic text-lg shadow-inner placeholder:text-brand-ink/30"
                     value={formData.dietaryNotes}
                     onChange={(e) => setFormData({ ...formData, dietaryNotes: e.target.value })}
                   />
@@ -172,7 +172,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
                   <button
                     disabled={status === 'loading'}
                     type="submit"
-                    className="w-full bg-stone-800 text-brand-rose py-5 rounded-full font-sans tracking-[0.3em] font-bold text-[11px] uppercase hover:bg-stone-900 transition-all duration-300 shadow-[0_10px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)] active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70"
+                    className="w-full btn-premium text-white py-5 rounded-full font-sans tracking-[0.3em] font-bold text-[11px] uppercase transition-all duration-300 shadow-[0_10px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)] active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70"
                   >
                     {status === 'loading' ? (
                       <Loader2 className="w-5 h-5 animate-spin" />

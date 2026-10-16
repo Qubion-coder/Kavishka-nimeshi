@@ -45,7 +45,7 @@ export function BlessingForm() {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-xl mx-auto bg-white/60 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-blue-100"
+      className="max-w-xl mx-auto bg-white/60 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-brand-rose"
     >
       <div className="space-y-6">
         <div>
@@ -54,7 +54,7 @@ export function BlessingForm() {
           </label>
           <input
             {...register('name', { required: 'Name is required' })}
-            className="w-full px-4 py-3 rounded-xl border border-blue-200 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-plum)]/50"
+            className="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-plum)]/50"
             placeholder="Name"
           />
         </div>
@@ -65,7 +65,7 @@ export function BlessingForm() {
           <textarea
             {...register('message', { required: 'Please leave a message' })}
             rows={4}
-            className="w-full px-4 py-3 rounded-xl border border-blue-200 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-plum)]/50 resize-none"
+            className="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-plum)]/50 resize-none"
             placeholder="Share your blessings and advice for the couple..."
           />
         </div>

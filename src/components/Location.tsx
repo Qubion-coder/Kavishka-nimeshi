@@ -1,21 +1,23 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Navigation, Compass, Map } from 'lucide-react';
+import { getEvent } from '../eventDetails';
 
 interface LocationProps {
   event?: string | null;
 }
 
-export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
+export const Location: React.FC<LocationProps> = ({ event = 'wedding' }) => {
+  const details = getEvent(event);
   const venues = [
     {
-      id: 'ceremony',
-      name: "Hotel Kashyapa",
-      city: "Avissawella, Sri Lanka",
-      quote: `"අපගේ ජීවිතයේ සුන්දරතම දිනය සැමරෙන ස්ථානය"`,
-      liveLocationUrl: "https://www.google.com/maps/search/?api=1&query=Hotel+Kashyapa+Avissawella",
-      imageUrl: encodeURI("/Screenshot 2026-10-16 164656.png"),
-      label: "The Venue"
+      id: details.type,
+      name: details.venue,
+      city: details.city,
+      quote: `"The place where we celebrate the most beautiful day of our lives"`,
+      liveLocationUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(details.mapQuery)}`,
+      embedUrl: `https://maps.google.com/maps?q=${encodeURIComponent(details.mapQuery)}&z=15&output=embed`,
+      label: details.type === 'homecoming' ? "The Homecoming Venue" : "The Wedding Venue"
     }
   ];
 
@@ -38,35 +40,35 @@ export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 className={`w-full lg:w-[45%] flex z-20 ${isReversed ? 'lg:-translate-x-12' : 'lg:translate-x-12'}`}
               >
-                <div className="w-full h-full bg-white/90 backdrop-blur-2xl p-10 sm:p-14 lg:p-16 rounded-[2.5rem] shadow-[0_30px_60px_rgba(176,137,104,0.15)] border border-brand-lavender/30 relative overflow-hidden group flex flex-col justify-center">
+                <div className="w-full h-full bg-white/90 backdrop-blur-2xl p-10 sm:p-14 lg:p-16 rounded-[2.5rem] gold-frame relative overflow-hidden group flex flex-col justify-center">
                   
                   {/* Elegant top border gradient */}
-                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-rose via-brand-lavender to-brand-plum" />
+                  <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-lavender via-brand-gold to-brand-plum" />
                   
                   <div className="relative z-10">
                     <div className="inline-flex items-center gap-4 mb-6">
                       <span className="text-brand-plum uppercase tracking-[0.5em] text-[10px] sm:text-[11px] font-bold drop-shadow-sm">
                         {venue.label}
                       </span>
-                      <div className="w-16 h-[1px] bg-gradient-to-r from-brand-plum/60 to-transparent" />
+                      <div className="w-16 h-[1px] bg-gradient-to-r from-brand-gold/60 to-transparent" />
                     </div>
 
-                    <h2 className="text-5xl sm:text-6xl font-sinhala text-stone-800 mb-6 leading-tight drop-shadow-sm">
-                      මංගල <br />
-                      <span className="italic font-light text-brand-plum">උත්සවය</span>
+                    <h2 className="text-5xl sm:text-6xl font-display text-brand-ink mb-6 leading-tight drop-shadow-sm">
+                      {details.title[0]} <br />
+                      <span className="italic font-light text-brand-plum">{details.title[1]}</span>
                     </h2>
 
                     <motion.div 
                       className="flex items-start gap-5 mt-4"
                     >
-                      <div className="w-12 h-12 bg-stone-50 rounded-full border border-brand-lavender/40 shadow-inner flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
+                      <div className="w-12 h-12 bg-brand-blush rounded-full border border-brand-lavender/40 shadow-inner flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
                         <MapPin className="text-brand-plum w-5 h-5" />
                       </div>
                       <div>
-                        <p className="text-2xl font-serif text-stone-800 mb-1">{venue.name}</p>
-                        <p className="text-[11px] uppercase tracking-[0.2em] font-medium text-stone-400 leading-relaxed mb-6">{venue.city}</p>
+                        <p className="text-2xl font-serif text-brand-ink mb-1">{venue.name}</p>
+                        <p className="text-[11px] uppercase tracking-[0.2em] font-medium text-brand-ink/45 leading-relaxed mb-6">{venue.city}</p>
                         
-                        <p className="text-stone-500/90 italic font-sinhala text-lg leading-relaxed max-w-sm mb-10 pl-4 border-l-[1.5px] border-brand-lavender/40">
+                        <p className="text-brand-ink/65 italic font-serif text-lg leading-relaxed max-w-sm mb-10 pl-4 border-l-[1.5px] border-brand-lavender/40">
                           {venue.quote}
                         </p>
 
@@ -74,9 +76,9 @@ export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
                           href={venue.liveLocationUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-3 bg-stone-800 text-brand-rose px-8 py-4 rounded-full font-sans tracking-[0.2em] text-xs uppercase hover:bg-stone-900 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] transition-all duration-300 active:scale-95 group/btn"
+                          className="inline-flex items-center gap-3 btn-premium text-white px-8 py-4 rounded-full font-sans tracking-[0.2em] text-xs uppercase hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] transition-all duration-300 active:scale-95 group/btn"
                         >
-                          <Navigation className="w-4 h-4 text-brand-plum group-hover/btn:rotate-45 transition-transform duration-300" />
+                          <Navigation className="w-4 h-4 text-white group-hover/btn:rotate-45 transition-transform duration-300" />
                           Open Live Location
                         </a>
                       </div>
@@ -96,29 +98,23 @@ export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
                 transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
                 className="w-full lg:w-[65%] aspect-video sm:h-[350px] lg:aspect-auto lg:h-auto lg:min-h-[600px] relative z-10"
               >
-                <div className="absolute -inset-4 sm:-inset-6 border-[2px] border-brand-lavender/30 rounded-[3rem] -z-10 translate-x-2 sm:translate-x-4 translate-y-2 sm:translate-y-4" />
+                <div className="absolute -inset-4 sm:-inset-6 border border-brand-gold/40 rounded-[3rem] -z-10 translate-x-2 sm:translate-x-4 translate-y-2 sm:translate-y-4" />
                 
-                <a 
-                  href={venue.liveLocationUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full h-full block rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative group/map"
-                >
-                  {/* Image Placeholder Masking for premium feel */}
-                  <div className="absolute inset-0 bg-brand-lavender/10 mix-blend-multiply pointer-events-none z-20 group-hover/map:opacity-0 transition-opacity duration-1000" />
-                  
-                  <img
-                    src={venue.imageUrl}
-                    alt={`${venue.name} Location`}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] ease-in-out group-hover/map:scale-105"
+                <div className="w-full h-full min-h-[280px] block rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative">
+                  <iframe
+                    src={venue.embedUrl}
+                    title={`${venue.name} Location`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 w-full h-full border-0"
                   />
 
                   {/* Decorative Location Pin Overlay */}
                   <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full border border-brand-lavender/30 shadow-lg flex items-center gap-2 pointer-events-none z-30">
                     <Map className="w-4 h-4 text-brand-plum animate-pulse" />
-                    <span className="text-[9px] uppercase tracking-widest font-bold text-stone-600">Live Map</span>
+                    <span className="text-[9px] uppercase tracking-widest font-bold text-brand-ink/75">Live Map</span>
                   </div>
-                </a>
+                </div>
               </motion.div>
 
             </div>
