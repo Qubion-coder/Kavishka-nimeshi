@@ -48,7 +48,7 @@ export const EVENTS: Record<EventType, EventDetails> = {
     sideDate: 'November 27th',
     shortDate: 'Nov 27',
     confirmBy: 'November 17, 2026',
-    time: '6.00 PM - 12.00 AM',
+    time: '6.00 PM - 12.00 PM',
     venue: 'Sobalanka Holiday Resort',
     city: 'Melsiripura, Sri Lanka',
     mapQuery: 'Sobalanka Holiday Resort Melsiripura',
