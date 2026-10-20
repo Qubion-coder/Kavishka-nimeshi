@@ -41,7 +41,7 @@ export const CoupleDetails: React.FC = () => {
             <p className="text-brand-ink/65 font-sans text-xs sm:text-sm text-center lg:text-right">
               Beloved son of<br/>
               K. A. Sirisena &<br/>
-              H. M. Sudarma Samaradiwakara
+              S. M. Sudarma Samaradiwakara
             </p>
           </div>
           <div className="hidden lg:flex justify-end mt-8">
