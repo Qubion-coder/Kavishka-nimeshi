@@ -8,6 +8,8 @@ export interface EventDetails {
   date: Date;
   displayDate: string;
   sideDate: string;
+  shortDate: string;
+  confirmBy: string;
   time: string;
   poruwaTime?: string;
   venue: string;
@@ -28,6 +30,8 @@ export const EVENTS: Record<EventType, EventDetails> = {
     date: new Date('2026-11-25T09:00:00+05:30'),
     displayDate: 'November 25, 2026',
     sideDate: 'November 25th',
+    shortDate: 'Nov 25',
+    confirmBy: 'November 15, 2026',
     time: '9.00 AM - 4.30 PM',
     poruwaTime: '9.00 AM',
     venue: 'Ahaspokuna Holiday Resort',
@@ -42,6 +46,8 @@ export const EVENTS: Record<EventType, EventDetails> = {
     date: new Date('2026-11-27T18:00:00+05:30'),
     displayDate: 'November 27, 2026',
     sideDate: 'November 27th',
+    shortDate: 'Nov 27',
+    confirmBy: 'November 17, 2026',
     time: '6.00 PM - 12.00 AM',
     venue: 'Sobalanka Holiday Resort',
     city: 'Melsiripura, Sri Lanka',
@@ -53,6 +59,12 @@ export const EVENTS: Record<EventType, EventDetails> = {
 export const EVENT_PATHS: Record<EventType, string> = {
   wedding: '/',
   homecoming: '/homecoming',
+};
+
+/** Attendance-confirmation page for each event. */
+export const CONFIRM_PATHS: Record<EventType, string> = {
+  wedding: '/confirm',
+  homecoming: '/confirm/homecoming',
 };
 
 /** Any link without `event=homecoming` (including older links) opens the wedding invitation. */

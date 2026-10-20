@@ -45,6 +45,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
     try {
       const payload = new FormData();
       payload.append('sheet', 'WISH');
+      payload.append('event', eventParam);
       payload.append('name', formData.name);
       payload.append('message', formData.message);
 

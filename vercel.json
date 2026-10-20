@@ -5,6 +5,10 @@
       "destination": "/homecoming.html"
     },
     {
+      "source": "/confirm/homecoming",
+      "destination": "/homecoming.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

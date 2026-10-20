@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Copy, Check, Sparkles, User, Calendar, Clock, MapPin, Heart, Link as LinkIcon, ArrowLeft } from 'lucide-react';
+import { Copy, Check, CheckCircle2, Sparkles, User, Calendar, Clock, MapPin, Heart, Link as LinkIcon, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
-import { COUPLE, EVENTS, EVENT_PATHS, EventType } from '../eventDetails';
+import { CONFIRM_PATHS, COUPLE, EVENTS, EVENT_PATHS, EventType } from '../eventDetails';
 
 export const Admin: React.FC = () => {
   const [guestTitle, setGuestTitle] = useState('Mr.');
@@ -13,12 +13,16 @@ export const Admin: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const details = EVENTS[eventType];
 
-  const buildUrl = (type: EventType) => {
+  const guestQuery = () => {
     const params = new URLSearchParams();
     if (guestTitle) params.append('title', guestTitle);
     params.append('name', guestName.trim());
-    return `${window.location.origin}${EVENT_PATHS[type]}?${params.toString()}`;
+    return params.toString();
   };
+
+  const buildUrl = (type: EventType) => `${window.location.origin}${EVENT_PATHS[type]}?${guestQuery()}`;
+
+  const buildConfirmUrl = (type: EventType) => `${window.location.origin}${CONFIRM_PATHS[type]}?${guestQuery()}`;
 
   const handleEventChange = (type: EventType) => {
     setEventType(type);
@@ -75,6 +79,30 @@ Your presence would truly mean the world to us, and we would be honored to celeb
 
 With love,
 ❤️ ${COUPLE.names}`;
+  };
+
+  const handleCopyConfirmMessage = () => {
+    const fullName = guestTitle.toLowerCase() === 'family'
+      ? `${guestName.trim()} and Family`
+      : `${guestTitle ? guestTitle + ' ' : ''}${guestName}`.trim();
+    const msg = `${includeDear ? `Dear ${fullName}` : fullName} ❤️
+
+Having previously shared our ${details.label.toLowerCase()} invitation, we kindly ask you to confirm your attendance as we finalize arrangements for our celebration.
+
+📅 ${details.displayDate}
+📍 ${details.venue}, ${details.city.replace(', Sri Lanka', '')}
+
+Please confirm by ${details.confirmBy} through the link below 🌐:
+
+${buildConfirmUrl(eventType)}
+
+With love,
+❤️ ${COUPLE.names}`;
+    navigator.clipboard.writeText(msg).then(() => {
+      toast.success('Confirmation message copied to clipboard!');
+    }).catch(() => {
+      toast.error('Failed to copy message.');
+    });
   };
 
   const handleCopyMessageActive = () => {
@@ -279,6 +307,14 @@ With love,
                       Copy Full Message
                     </button>
                   </div>
+
+                  <button
+                    onClick={handleCopyConfirmMessage}
+                    className="w-full bg-white text-brand-plum py-3.5 px-6 rounded-full font-sans tracking-[0.2em] font-bold text-[11px] uppercase hover:bg-brand-blush transition-all shadow-sm border border-brand-gold/40 flex items-center justify-center gap-2 active:scale-95"
+                  >
+                    <CheckCircle2 className="w-4 h-4" />
+                    Copy Attendance Confirmation Message
+                  </button>
                 </div>
               ) : (
                 <div className="text-center py-12 border-2 border-dashed border-brand-rose rounded-2xl">

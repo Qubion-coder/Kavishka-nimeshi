@@ -6,9 +6,12 @@ import { VideoIntro } from './components/VideoIntro';
 import { InvitationContent } from './components/InvitationContent';
 import { Admin } from './components/Admin';
 import { INVITATION_IMAGE_URLS, preloadImages } from './utils/preloadImages';
-import { getEventFromLocation } from './eventDetails';
+import { Confirm } from './components/Confirm';
+import { CONFIRM_PATHS, EVENTS, getEvent, getEventFromLocation } from './eventDetails';
 
 const isAdminRoute = () => window.location.pathname === '/admin';
+const currentPath = () => window.location.pathname.replace(/\/$/, '');
+const isConfirmRoute = () => currentPath().startsWith(CONFIRM_PATHS.wedding);
 
 export default function App() {
   const [showInvitation, setShowInvitation] = useState(false);
@@ -19,7 +22,9 @@ export default function App() {
   const params = new URLSearchParams(window.location.search);
   const titleParam = params.get('title') || '';
   const nameParam = params.get('name') || '';
-  const event = getEventFromLocation(window.location);
+  const event = isConfirmRoute()
+    ? currentPath() === CONFIRM_PATHS.homecoming ? EVENTS.homecoming : getEvent(params.get('event'))
+    : getEventFromLocation(window.location);
   const eventParam = event.type;
 
   const fullInviteeName = titleParam.toLowerCase() === 'family'
@@ -30,7 +35,7 @@ export default function App() {
   const weddingDate = event.date;
 
   useEffect(() => {
-    if (isAdminRoute()) return;
+    if (isAdminRoute() || isConfirmRoute()) return;
 
     let cancelled = false;
 
@@ -88,6 +93,15 @@ export default function App() {
       setShowInvitation(true);
     });
   }, []);
+
+  if (isConfirmRoute()) {
+    return (
+      <>
+        <Toaster position="top-center" />
+        <Confirm event={event} inviteeName={fullInviteeName} />
+      </>
+    );
+  }
 
   if (isAdminRoute()) {
     return (

@@ -1,13 +1,30 @@
-const SPREADSHEET_ID = '1GYsb2XNsJ--J5_APTdjkrbxasExu9CPWIVpZsnXwZqk';
+// Kavishka & Nimeshi — RSVP, attendance confirmation and wishes endpoint.
+// Every submission goes to the tab for its event:
+//   Wedding RSVP | Wedding Wishes | Homecoming RSVP | Homecoming Wishes
+// The website sends: sheet = RSVP | WISH, event = wedding | homecoming.
 
-const SHEETS = {
+const SPREADSHEET_ID = '1Gx-ZPOCyh8Rl0gxxRtBY-6kkdgqQabPGUeZzojrGe6c';
+
+const EVENTS = {
+  wedding: 'Wedding',
+  homecoming: 'Homecoming',
+};
+
+const TYPES = {
   RSVP: {
-    name: 'RSVP',
-    headers: ['Timestamp', 'Full Name', 'Guests', 'Event', 'Dietary Notes / Message'],
-    row: (p) => [new Date(), p.fullName || '', p.guests || '', p.event || '', p.dietaryNotes || ''],
+    suffix: 'RSVP',
+    headers: ['Timestamp', 'Full Name', 'Attending', 'Guests', 'Notes', 'Source'],
+    row: (p) => [
+      new Date(),
+      p.fullName || '',
+      p.attending || 'Yes',
+      p.guests || '',
+      p.dietaryNotes || '',
+      p.source || 'Invitation RSVP',
+    ],
   },
   WISH: {
-    name: 'Wishes',
+    suffix: 'Wishes',
     headers: ['Timestamp', 'Name', 'Message'],
     row: (p) => [new Date(), p.name || '', p.message || ''],
   },
@@ -19,15 +36,15 @@ function doPost(e) {
     lock.waitLock(10000);
 
     const payload = parsePayload_(e);
-    const config = SHEETS[String(payload.sheet || '').toUpperCase()];
+    const type = TYPES[String(payload.sheet || '').toUpperCase()];
 
-    if (!config) {
+    if (!type) {
       return jsonResponse_({ ok: false, error: 'Invalid sheet. Use RSVP or WISH.' });
     }
 
     const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-    const sheet = getOrCreateSheet_(ss, config);
-    sheet.appendRow(config.row(payload));
+    const sheet = getOrCreateSheet_(ss, sheetName_(eventKey_(payload.event), type), type.headers);
+    sheet.appendRow(type.row(payload));
 
     return jsonResponse_({ ok: true });
   } catch (error) {
@@ -43,14 +60,28 @@ function doPost(e) {
 function doGet() {
   return jsonResponse_({
     ok: true,
-    message: 'Wedding form endpoint is running.',
+    message: 'Kavishka & Nimeshi form endpoint is running.',
   });
 }
 
-// Run this once from the Apps Script editor to create both sheets with headers.
+// Run this once from the Apps Script editor to create all four tabs with headers.
 function setup() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  Object.keys(SHEETS).forEach((key) => getOrCreateSheet_(ss, SHEETS[key]));
+  Object.keys(EVENTS).forEach((eventKey) => {
+    Object.keys(TYPES).forEach((typeKey) => {
+      const type = TYPES[typeKey];
+      getOrCreateSheet_(ss, sheetName_(eventKey, type), type.headers);
+    });
+  });
+}
+
+// Anything mentioning "homecoming" goes to the homecoming tabs; everything else is the wedding.
+function eventKey_(value) {
+  return String(value || '').toLowerCase().indexOf('homecoming') !== -1 ? 'homecoming' : 'wedding';
+}
+
+function sheetName_(eventKey, type) {
+  return EVENTS[eventKey] + ' ' + type.suffix;
 }
 
 function parsePayload_(e) {
@@ -96,12 +127,12 @@ function parseQueryString_(query) {
   return out;
 }
 
-function getOrCreateSheet_(ss, config) {
-  let sheet = ss.getSheetByName(config.name);
+function getOrCreateSheet_(ss, name, headers) {
+  let sheet = ss.getSheetByName(name);
   if (!sheet) {
-    sheet = ss.insertSheet(config.name);
+    sheet = ss.insertSheet(name);
   }
-  ensureHeaders_(sheet, config.headers);
+  ensureHeaders_(sheet, headers);
   return sheet;
 }
 
@@ -121,7 +152,8 @@ function ensureHeaders_(sheet, headers) {
   sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
   sheet.getRange(1, 1, 1, headers.length)
     .setFontWeight('bold')
-    .setBackground('#f3e8dc')
+    .setBackground('#fbe3ea')
+    .setFontColor('#5a2a3a')
     .setHorizontalAlignment('center');
   sheet.setFrozenRows(1);
   sheet.setColumnWidth(1, 170);
